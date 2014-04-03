@@ -1,0 +1,15 @@
+
+---
+permit_root_login : 'yes'
+path_real: "/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
+
+#Base Module
+base::manage_firewall: false
+
+base::hosts::self: true
+
+#base::basedir::basedirs:
+#'/data/':
+#owner: 'root'
+#group: 'root'
+#mode: '0755'

@@ -1,0 +1,13 @@
+---
+:backends:
+  - yaml
+
+:logger: console
+
+:hierarchy:
+  - "node/%{::clientcert}"
+  - "os/%{::osfamily}"
+  - common
+
+:yaml:
+   :datadir: /home/fc/git/puppetdesktop/hiera
