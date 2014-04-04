@@ -1,0 +1,15 @@
+time 1396603483
+new [description:"Manage Users" entry:"1396603483" priority:"H" status:"pending" uuid:"a2ebc401-58ac-4e9c-aedd-fa9b8d9d552a"]
+---
+time 1396603534
+old [description:"Manage Users" entry:"1396603483" priority:"H" status:"pending" uuid:"a2ebc401-58ac-4e9c-aedd-fa9b8d9d552a"]
+new [annotation_1396603534:"Create Skeleton Directory" description:"Manage Users" entry:"1396603483" priority:"H" status:"pending" uuid:"a2ebc401-58ac-4e9c-aedd-fa9b8d9d552a"]
+---
+time 1396603549
+old [annotation_1396603534:"Create Skeleton Directory" description:"Manage Users" entry:"1396603483" priority:"H" status:"pending" uuid:"a2ebc401-58ac-4e9c-aedd-fa9b8d9d552a"]
+new [annotation_1396603534:"Create Skeleton Directory" annotation_1396603549:"required for taskwarrior and other bits" description:"Manage Users" entry:"1396603483" priority:"H" status:"pending" uuid:"a2ebc401-58ac-4e9c-aedd-fa9b8d9d552a"]
+---
+time 1396603562
+old [annotation_1396603534:"Create Skeleton Directory" annotation_1396603549:"required for taskwarrior and other bits" description:"Manage Users" entry:"1396603483" priority:"H" status:"pending" uuid:"a2ebc401-58ac-4e9c-aedd-fa9b8d9d552a"]
+new [annotation_1396603534:"Create Skeleton Directory" annotation_1396603549:"required for taskwarrior and other bits" annotation_1396603562:"should provide resources for rcfile and others ?" description:"Manage Users" entry:"1396603483" priority:"H" status:"pending" uuid:"a2ebc401-58ac-4e9c-aedd-fa9b8d9d552a"]
+---
