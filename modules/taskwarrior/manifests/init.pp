@@ -9,50 +9,52 @@ class taskwarrior (
     package { "taskwarrior":
         ensure =>   'installed',
         name   =>   $taskwarrior::params::packages,
-        before =>   Taskwarrior::Rcfile["${users}_taskrc"]
     }
 
-    #taskwarrior::rcfile { "${users}_taskrc":
-    #    user     => $users,
-    #    filename => ".taskrc"
-    #}
+    #TODO: ElsIf user is just a string 
+    if $users == [] {
+      fail("\$users need to be specified for taskwarrior")
+    }
+    else {
+      # task_rc goes into ~/.taskrc
+      $task_rc = taskwarrior_files($users,undef,".taskrc")
+    }
 
+    # Create the resources
+    create_resources(taskwarrior::rcfile,$task_rc)
 
-    #define taskwarrior::rcfile (
-    #  $ensure   = "present",
-    #  $user     = undef,
-    #  $path     = undef,
-    #  $filename = undef,
-    #) {
+    #TODO: Manage Present/Absent ensure
+    define taskwarrior::rcfile (
+      $ensure   = "present",
+      $user     = undef,
+      $path     = undef,
+      $filename = undef,
+    ) {
 
-    #    if $user == undef {
-    #      fail("\$user need to be specified for taskwarrior::rcfile")
-    #    }
+        if $user == undef {
+          fail("\$user need to be specified for taskwarrior::rcfile")
+        }
 
-    #    if $filename != undef {
-    #      $filename_real = $filename
-    #    }
-    #    else {
-    #      $filename_real = $title
-    #    }
+        if $filename == undef {
+          fail("\$filename need to be specified for taskwarrior::rcfile")
+        }
 
-    #    $home = get_user_home($user)
+        #TODO: Only WORKS with puppet apply since function run on clinet ... bad bad bad
+        $home = get_user_home($user)
 
-    #    if $path != undef {
-    #      $rcfile_real = "${home}/${filename_real}"
-    #    }
-    #    else {
-    #      $rcfile_real = "${home}/${path}/${filename_real}"
-    #    }
+        if $path != undef {
+          $rcfile_real = "${home}/${filename}"
+        }
+        else {
+          $rcfile_real = "${home}/${path}/${filename}"
+        }
 
-    #    notify{"${user} - ${home} - ${filename_real}": }
-
-    #    #file { "${rcfile_real}":
-    #      #ensure  => "present",
-    #      #owner   => "${user}",
-    #      #mode    => "0640",
-    #      #content => template("taskwarrior/${taskwarrior::taskwarrior['rc_tmpl']}"),
-    #      #}
-    #}
+        file { "${rcfile_real}":
+          ensure  => "present",
+          owner   => "${user}",
+          mode    => "0640",
+          content => template("taskwarrior/${taskwarrior::taskwarrior['rc_tmpl']}"),
+        }
+    }
 
 }

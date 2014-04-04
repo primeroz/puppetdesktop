@@ -31,7 +31,7 @@ node "debianbase.pr-z.info" inherits basenode {
 
   class { "taskwarrior":
     stage => setup,
-    users => ["fc","root"],
+    users => ["fc"],
   }
 
 }
