@@ -7,10 +7,10 @@ node basenode {
   include 'stdlib'
   include 'utils'
 
-  #  class { 'base': 
-  #    config => $config,
-  #    stage  => setup,
-  #  }
+  class { 'base': 
+      config => $config,
+      stage  => setup,
+  }
 
 
   #  anchor { 'basenode::begin': }
@@ -29,8 +29,9 @@ node default inherits basenode {
 
 node "debianbase.pr-z.info" inherits basenode {
 
-  #class { "r_zol":
-  #  stage => setup,
-  #}
+  class { "taskwarrior":
+    stage => setup,
+    users => ["fc","root"],
+  }
 
 }

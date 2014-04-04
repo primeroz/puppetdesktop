@@ -7,7 +7,6 @@ base::basepkgs::common:
   - curl
   - git
   - rake
-  - task
   - tmux
   - tree
   - vim
