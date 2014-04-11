@@ -7,4 +7,13 @@ class desktop::awesome (
       ensure => 'installed',
     }
 
+    file { 'awesome_config':
+      ensure  => "directory",
+      path    => "/home/${user}/.config/awesome",
+      require => File["/home/${user}/.config"],
+      owner   => $user,
+      group   => $group,
+      mode    => "0700",
+    }
+
 }

@@ -4,4 +4,6 @@ desktop::common::slim_theme: "default"
 
 desktop::common::homedirs:
   '.config':
-    mode: '0755'
+    mode: '0700'
+  'tmp':
+    mode: '0700'

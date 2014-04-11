@@ -15,6 +15,17 @@ class desktop::common (
       ensure => 'installed',
     }
 
+    # Create Home Dirs
+    # TODO Need to create user and groups!
+    $homedirs_default = {
+      ensure  => 'directory',
+      owner   => $user,
+      group   => $user,
+    }
+
+    $homedirs_real = f_desktop_homedirs_path($homedirs,"/home/${user}")
+    create_resources(file,$homedirs_real,$homedirs_default)
+
     # Slim Resources
     file { "/etc/slim.conf":
       ensure  => $ensure,
@@ -34,10 +45,14 @@ class desktop::common (
 
     # Desktop Environments
     if $awesome_enabled {
-      class { 'desktop::awesome': }
+      class { 'desktop::awesome':
+        user => $user,
+      }
     }
     if $openbox_enabled {
-      class { 'desktop::openbox': }
+      class { 'desktop::openbox':
+        user => $user,
+      }
     }
 
 
