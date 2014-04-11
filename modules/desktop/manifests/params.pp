@@ -24,7 +24,8 @@ class desktop::params {
                               'openbox-themes',
                             ]
 
-        $desktop_packages = [ 'thunar',
+        $desktop_packages = [ 'clipit',
+                              'thunar',
                               'thunar-archive-plugin',
                               'thunar-data',
                               #'thunar-dropbox-plugin',
