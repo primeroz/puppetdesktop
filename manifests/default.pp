@@ -29,9 +29,12 @@ node default inherits basenode {
 
 node "debianbase.pr-z.info" inherits basenode {
 
-  class { "taskwarrior":
-    stage => setup,
-    users => ["fc"],
+  class { "desktop":
+    awesome_enabled => true,
+    openbox_enabled => true,
+    stage           => main,
+    user            => "fc",
+    features        => ['git']
   }
 
 }

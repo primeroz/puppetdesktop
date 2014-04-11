@@ -4,6 +4,10 @@ class taskwarrior::params {
       rc_tmpl     => "taskrc.erb",
       url         => "http://spiegl.de/andy/software/t.tar.gz",
       basedir     => "~/.task",
+      theme       => $::osfamily ? {
+        'Debian' => "/usr/share/task/dark-gray-256",
+        default  => "/usr/share/task/dark-gray-256"
+      }
     }
 
     $t  = {
@@ -19,7 +23,8 @@ class taskwarrior::params {
 
     case $::osfamily {
       'Debian': {
-        $packages = ['task'] 
+        $packages = ['task']
+        $taskwarrior_theme = "/usr/share/task/dark-gray-256.theme"
       }
     }
 
