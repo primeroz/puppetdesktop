@@ -33,6 +33,8 @@ class desktop::common (
       group   => 'root',
       mode    => '0644',
       content => template('desktop/slim.conf.erb'),
+      require => Package['slim'],
+      notify  => Service['slim'],
     }
 
     file { "/usr/share/slim/themes/":
@@ -41,6 +43,13 @@ class desktop::common (
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
+      require => Package['slim'],
+    }
+
+    service { 'slim':
+      ensure  => 'running',
+      enable  => 'true',
+      require => Package['slim'],
     }
 
     # Desktop Environments
