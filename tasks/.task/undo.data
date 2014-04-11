@@ -31,3 +31,14 @@ time 1397050958
 old [annotation_1397050948:"To manage password, ssh keys and such" description:"Manage a secure set of files" entry:"1397050940" status:"pending" uuid:"78533c68-c1cd-4c69-9ca2-45fa97bf164b"]
 new [annotation_1397050948:"To manage password, ssh keys and such" annotation_1397050958:"SHOULD NEVER be commited to any upstream repo" description:"Manage a secure set of files" entry:"1397050940" status:"pending" uuid:"78533c68-c1cd-4c69-9ca2-45fa97bf164b"]
 ---
+time 1397213586
+new [description:"Manage BASH" entry:"1397213586" status:"pending" uuid:"715d3a6c-00d4-46d8-9149-9774b4fe1941"]
+---
+time 1397213596
+old [description:"Manage BASH" entry:"1397213586" status:"pending" uuid:"715d3a6c-00d4-46d8-9149-9774b4fe1941"]
+new [annotation_1397213596:"Manage with local bash.rc.d" description:"Manage BASH" entry:"1397213586" status:"pending" uuid:"715d3a6c-00d4-46d8-9149-9774b4fe1941"]
+---
+time 1397213611
+old [annotation_1397213596:"Manage with local bash.rc.d" description:"Manage BASH" entry:"1397213586" status:"pending" uuid:"715d3a6c-00d4-46d8-9149-9774b4fe1941"]
+new [annotation_1397213596:"Manage with local bash.rc.d" annotation_1397213611:"resources for aliases and such" description:"Manage BASH" entry:"1397213586" status:"pending" uuid:"715d3a6c-00d4-46d8-9149-9774b4fe1941"]
+---
