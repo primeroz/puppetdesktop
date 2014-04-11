@@ -16,7 +16,7 @@ class desktop::common (
     }
 
     # Create Home Dirs
-    # TODO Need to create user and groups!
+    # TODO Need to create user and groups first!
     $homedirs_default = {
       ensure  => 'directory',
       owner   => $user,
@@ -49,7 +49,18 @@ class desktop::common (
     service { 'slim':
       ensure  => 'running',
       enable  => 'true',
+      hasstatus  => 'false',
       require => Package['slim'],
+    }
+
+    # Clipit Resources
+    file { "/home/${user}/.config/clipit/clipitrc":
+      ensure  => "file",
+      owner   => $user,
+      group   => $user,
+      mode    => '0600',
+      source  => "puppet:///modules/desktop/clipit/clipitrc",
+      require => Package['clipit'],
     }
 
     # Desktop Environments

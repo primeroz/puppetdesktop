@@ -6,7 +6,8 @@ module Puppet::Parser::Functions
         config = Hash.new
 
         homedirs.each do |key,value|
-          config["#{homepath}/#{key}"] = value
+          value["path"] ="#{homepath}/#{key}"
+          config["#{key}"] = value
         end
 
         config
