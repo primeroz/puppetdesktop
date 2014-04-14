@@ -51,6 +51,10 @@ define conky::config (
         "source"   => undef,
         default    => undef,
       },
+      require => $path ? {
+        undef   => undef,
+        default => File["${home_real}/.config/conky/${path}"]
+      }
     }
 }
 
