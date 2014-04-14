@@ -8,6 +8,10 @@ class bash (
       fail("\$user need to be specified for bash module")
     }
 
+    package { ["bash","bash-completion"]:
+      ensure => installed
+    }
+
     #TODO Use Templates and Profiles better
     file { "bashrc_user":
       source => "puppet:///modules/bash/bashrc-default",
