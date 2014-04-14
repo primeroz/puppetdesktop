@@ -18,4 +18,13 @@ class conky (
       require => PAckage['conky'],
     }
 
+    #TODO This should be somewhere else
+    conky::config { "desktop/conkydate":
+     user     => $user,
+     path     => "desktop",
+     filename => "conkydate",
+     filetype => "source",
+     source   => "conky/desktop/conkydate"
+    }
+
 }
