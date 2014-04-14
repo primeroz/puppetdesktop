@@ -16,6 +16,8 @@ desktop::common::homedirs:
     mode: '0770'
   'tmp':
     mode: '0770'
+  'task': #Taskwarrior T base directory
+    mode: '0770'
 
 
 desktop::awesome::themes_enabled: false
