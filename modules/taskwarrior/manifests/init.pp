@@ -6,7 +6,7 @@ class taskwarrior (
 
 ) inherits taskwarrior::params {
 
-    package { "${taskwarrior::params::packages}":
+    package { $taskwarrior::params::packages:
         ensure =>   'installed',
         before => [Utils::Rcfile['taskrc'],Utils::Rcfile['taskopenrc'],File['/usr/local/bin/taskopen'],File['/usr/local/bin/t']],
     }
