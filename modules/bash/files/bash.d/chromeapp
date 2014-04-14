@@ -1,0 +1,6 @@
+alias evernote='/opt/google/chrome/google-chrome --app-id=lbfehkoinhhcknnbdgnnmjhiladcgbol --profile-directory=Default --proxy-auto-detect'
+alias anydo='/opt/google/chrome/google-chrome --app-id=ocgddccilgpeepgglnlpchkpgamkgmld --profile-directory=Default --proxy-auto-detect'
+alias wflowy='/opt/google/chrome/google-chrome --app-id=koegeopamaoljbmhnfjbclbocehhgmkm --profile-directory=Default --proxy-auto-detect'
+alias keep='/opt/google/chrome/google-chrome --profile-directory=Default --proxy-auto-detect --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki'
+
+
