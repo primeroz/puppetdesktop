@@ -9,7 +9,7 @@ TASKBIN='task'
 #
 <% tw = scope.lookupvar('taskwarrior::taskopen') -%>
 
-NOTES_FOLDER="$HOME/<%= tw['rc_tmpl'] -%>/"
+NOTES_FOLDER="$HOME/<%= tw['basedir'] -%>/"
 
 # Preferred extension for tasknotes
 NOTES_EXT=".txt"
