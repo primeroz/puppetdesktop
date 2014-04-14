@@ -41,6 +41,13 @@ node "debianbase.pr-z.info" inherits basenode {
 
 node "ubuntu1.pr-z.info" inherits basenode {
 
+  $local_user = "fc"
+
+  users::account { "$local_user":
+    groups   => ['sudo'],
+    sysadmin => true,
+  }
+
   class { "desktop":
     awesome_enabled => true,
     openbox_enabled => true,
