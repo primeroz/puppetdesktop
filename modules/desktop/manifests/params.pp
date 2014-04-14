@@ -35,7 +35,7 @@ class desktop::params {
                               'thunar-gtkhash',
                               'thunar-media-tags-plugin',
                               'thunar-volman',
-                              'volumeicon',
+                              'volumeicon-alsa',
                               'xfce4-volumed',
                               'xfce4-power-manager',
                               'xscreensaver',
