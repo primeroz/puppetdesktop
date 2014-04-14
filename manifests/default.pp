@@ -45,7 +45,7 @@ node "ubuntu1.pr-z.info" inherits basenode {
 
   users::account { "$local_user":
     groups   => ['sudo'],
-    sysadmin => true,
+    system   => true,
   }
 
   class { "desktop":
