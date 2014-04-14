@@ -27,7 +27,7 @@ define conky::config (
       $configfile_real = "${home_real}/.config/conky/${path}/${filename}"
     }
 
-    file { "${rcfile_real}":
+    file { "${configfile_real}":
       ensure  => "${ensure}",
       owner   => "${user}",
       group   => "${user}",
