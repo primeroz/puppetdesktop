@@ -24,6 +24,15 @@ define conky::config (
       $configfile_real = "${home_real}/.config/conky/${filename}"
     }
     else {
+      # Try create the directory via file resource if resource not yet defined!
+      if ! defined(File["${home_real}/.config/conky/${path}"]) {
+        file { "${home_real}/.config/conky/${path}":
+          ensure  => "directory",
+          owner   => "${user}",
+          group   => "${user}",
+          mode    => "0750",
+        }
+      }
       $configfile_real = "${home_real}/.config/conky/${path}/${filename}"
     }
 
