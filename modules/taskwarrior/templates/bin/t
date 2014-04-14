@@ -1,0 +1,171 @@
+#!/usr/bin/perl
+#
+# This script can be called as "t" or "tt"
+#
+#  t   --  run "task" in local directories = project names
+#  tt  --  show subprojects also
+#
+################################################################################
+#
+# Copyright 2012 Andy Spiegl <taskwarrior.andy@spiegl.de>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# http://www.opensource.org/licenses/mit-license.php
+#
+################################################################################
+#
+# History:
+#
+# v0.1  2012-04-02: first version
+# v0.2  2012-04-04: special case for no-filter commands (add,log)
+# v0.3  2012-04-13: don't show subprojects, but new alias "tt" shows all
+# v0.4  2012-04-17: fixed problem with shell metacharacters in shell calls
+#
+################################################################################
+
+my $VERSION = "0.4";
+
+############################################
+
+use strict;
+use warnings;
+
+# security for shell calls:
+$ENV{'PATH'} = '/bin:/usr/bin';
+delete @ENV{'IFS', 'CDPATH', 'ENV', 'BASH_ENV'};
+
+
+############################################
+# configurable VARIABLES
+############################################
+
+my $debug = 0;
+my $taskdir = $ENV{HOME} . "<%= scope.lookupvar('taskwarrior::params::t::basedir') -%>";
+
+
+############################################
+# some self detection
+############################################
+my $self = $0; $self =~ s|.*/||;
+
+my $hostname = `/bin/hostname -f`;
+chomp $hostname;
+$hostname="none" unless $hostname;
+
+my ($UID, $EUID, $GID, $EGID);
+$UID=(getpwuid( $< ))[0]; $EUID=(getpwuid( $> ))[0];
+$GID=(getgrgid( $( ))[0]; $EGID=(getgrgid( $) ))[0];
+
+
+############################################
+# global variables
+############################################
+my $currDir;
+my $localProj;
+my $cmd = '';
+my $projModifier;
+
+############################################
+# Main Program
+############################################
+
+print "Starting $self (v$VERSION)\n"  if $debug > 2;
+print "Running as UID $UID, EUID $EUID, GID $GID, EGID $EGID.\n"  if $debug > 2;
+
+chomp($currDir = `pwd`);
+
+if ($currDir !~ m|^$taskdir/(.*)|)
+{
+  print "DEBUG: global tasks\n"  if $debug;
+  system "task", @ARGV;
+  exit &check_for_shell_errors($?);
+}
+else
+{
+  $localProj = $1;
+
+  $localProj =~ s|/|.|g;        # subprojects are separated with dots
+  print "DEBUG: local tasks: project \"$localProj\"\n"  if $debug;
+
+  # "is" doesn't work like expected, workaround: "endswith"
+  #$projModifier="project.is";
+  $projModifier="project.endswith";
+
+  # special case: simple commands without modifiers
+  if (@ARGV and $ARGV[0] =~ /^(calendar|help|colors|columns|undo|version)/)
+  {
+    $cmd = $1;
+    shift;
+    system "task", $cmd, @ARGV;
+    exit &check_for_shell_errors($?);
+  }
+
+  # special case: project modifier has to go _after_ these commands
+  elsif (@ARGV and $ARGV[0] =~ /^(add|log)/)
+  {
+    $cmd = $1;
+    shift;
+    $projModifier="project";   # "is" or "endswith" doesn't make sense here
+  }
+
+  # print "(listing local tasks for project \"$localProj\")\n";
+
+  if ($self eq "t")
+  {
+    print "DEBUG: system call: \"task $cmd $projModifier:$localProj @ARGV\"\n"  if $debug;
+    system "task", $cmd, "$projModifier:$localProj", @ARGV;
+    exit &check_for_shell_errors($?);
+  }
+  elsif ($self eq "tt")
+  {
+    print "DEBUG: system call: \"task $cmd project:$localProj @ARGV\"\n"  if $debug;
+    system "task", $cmd, "project:$localProj", @ARGV;
+    exit &check_for_shell_errors($?);
+  }
+
+}
+
+
+# use after: system("bar foo");
+# according to "man perlfunc" better use `bar foo` if you want to save the command output
+# and then do:  $errorcode = $?>>8;
+sub check_for_shell_errors
+{
+  my ($status) = @_;
+
+  return 0 unless $status;
+
+  if ($status == -1)
+  {
+    print "Could not execute system command: $!\n";
+  }
+  elsif ($status & 127)
+  {
+    printf "system command exited with signal %d (%s coredump).\n",
+    ($status & 127),  ($status & 128) ? 'with' : 'without';
+  }
+  else
+  {
+    printf "system command exited with status code %d.\n", $status >> 8;
+  }
+
+#  print "I'll better stop here.\n";
+  return $status >> 8;
+}

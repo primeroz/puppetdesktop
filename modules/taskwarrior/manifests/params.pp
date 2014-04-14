@@ -12,7 +12,7 @@ class taskwarrior::params {
 
     $t  = {
       url         => "http://spiegl.de/andy/software/t.tar.gz",
-      basedir     => "~/task",
+      basedir     => "/task", #Relative to USER HOME
     }
 
     $taskopen  = {
