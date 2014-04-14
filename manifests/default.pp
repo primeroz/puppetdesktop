@@ -38,3 +38,15 @@ node "debianbase.pr-z.info" inherits basenode {
   }
 
 }
+
+node "ubuntu1.pr-z.info" inherits basenode {
+
+  class { "desktop":
+    awesome_enabled => true,
+    openbox_enabled => true,
+    stage           => main,
+    user            => "fc",
+    features        => ['git']
+  }
+
+}
