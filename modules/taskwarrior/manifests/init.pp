@@ -32,5 +32,10 @@ class taskwarrior (
         content => template("taskwarrior/bin/t"),
         require => Package["taskwarrior"],
     }
+    file { "/usr/local/bin/tt":
+        ensure  => "link",
+        target  => "/usr/local/bin/t",
+        require => File["/usr/local/bin/t"],
+    }
 
 }
