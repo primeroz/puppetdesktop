@@ -17,7 +17,7 @@ class taskwarrior::params {
 
     $taskopen  = {
       url         => "https://github.com/ValiValpas/taskopen/archive/master.zip",
-      basedir     => "~/tasknotes",
+      basedir     => "tasknotes", #Relative to USER HOME
       rc_tmpl     => "taskopenrc.erb",
     }
 

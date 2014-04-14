@@ -24,6 +24,23 @@ class taskwarrior (
         filename => ".taskrc"
     }
 
+    file { "/usr/local/bin/taskopen":
+        ensure  => "present",
+        owner   => "root",
+        group   => "root",
+        mode    => "0755",
+        source  => "puppet:///modules/taskwarrior/bin/taskopen",
+        require => Package["taskwarrior"],
+    }
+
+    # .taskopenrc configuration file
+    utils::rcfile { "taskopenrc":
+        user     => $user,
+        home     => "/home",
+        path     => undef,
+        template => "taskwarrior/${taskopen['rc_tmpl']}",
+        filename => ".taskopenrc"
+    }
     file { "/usr/local/bin/t":
         ensure  => "present",
         owner   => "root",
