@@ -25,11 +25,12 @@ class taskwarrior (
     }
 
     file { "/usr/local/bin/t":
-        ensure   => "present",
-        owner    => "root",
-        group    => "root",
-        mode     => "0755",
-        template => "taskwarrior/bin/t",
+        ensure  => "present",
+        owner   => "root",
+        group   => "root",
+        mode    => "0755",
+        content => "taskwarrior/bin/t",
+        require => Package["taskwarrior"],
     }
 
 }
