@@ -47,8 +47,8 @@ class desktop::common (
     }
 
     service { 'slim':
-      ensure  => 'running',
-      enable  => 'true',
+      ensure  => 'stopped',
+      enable  => 'false',
       hasstatus  => 'false',
       require => Package['slim'],
     }
