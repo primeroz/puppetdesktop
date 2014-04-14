@@ -49,4 +49,6 @@ node "ubuntu1.pr-z.info" inherits basenode {
     features        => ['git']
   }
 
+  class { "bash": }
+
 }
