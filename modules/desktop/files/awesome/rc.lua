@@ -104,10 +104,14 @@ layouts =
 }
 -- }}}
 
+loadrc("xrun")
+
 loadrc("rc.tags")
 loadrc("rc.menu")
 loadrc("rc.widgets")
 loadrc("rc.bindings")
 loadrc("rc.rules")
 loadrc("rc.signals")
+
+loadrc("start")
 
