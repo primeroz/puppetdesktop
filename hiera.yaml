@@ -11,4 +11,4 @@
   - common
 
 :yaml:
-   :datadir: /home/fc/git/puppetdesktop/hiera
+   :datadir: ./hiera
