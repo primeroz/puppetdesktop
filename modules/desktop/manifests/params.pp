@@ -27,7 +27,6 @@ class desktop::params {
         $desktop_packages = [ 'clipit',
                               'chromium-browser',
                               'cloudprint',
-                              'conky',
                               'flashplugin-installer',
                               'thunar',
                               'thunar-archive-plugin',
