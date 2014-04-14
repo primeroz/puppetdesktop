@@ -19,7 +19,7 @@ class bash (
     }
 
     file { "bashd_home_directory":
-      ensure => "directory"
+      ensure => "directory",
       path   => "/home/${user}/.bash.d/",
       owner   => $user,
       group   => $user,
