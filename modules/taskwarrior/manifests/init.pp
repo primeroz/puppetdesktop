@@ -8,6 +8,7 @@ class taskwarrior (
 
     package { "${taskwarrior::params::packages}":
         ensure =>   'installed',
+        before => [Utils::Rcfile['taskrc'],Utils::Rcfile['taskopenrc'],File['/usr/local/bin/taskopen'],File['/usr/local/bin/t']],
     }
 
     if $user == undef {
@@ -29,7 +30,6 @@ class taskwarrior (
         group   => "root",
         mode    => "0755",
         source  => "puppet:///modules/taskwarrior/bin/taskopen",
-        require => Package["taskwarrior"],
         before  => Utils::Rcfile["taskopenrc"],
     }
 
@@ -47,7 +47,6 @@ class taskwarrior (
         group   => "root",
         mode    => "0755",
         content => template("taskwarrior/bin/t"),
-        require => Package["taskwarrior"],
     }
     file { "/usr/local/bin/tt":
         ensure  => "link",
