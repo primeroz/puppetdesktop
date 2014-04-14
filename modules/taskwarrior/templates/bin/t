@@ -57,7 +57,7 @@ delete @ENV{'IFS', 'CDPATH', 'ENV', 'BASH_ENV'};
 ############################################
 
 my $debug = 0;
-my $taskdir = $ENV{HOME} . "<%= scope.lookupvar('taskwarrior::params::t::basedir') -%>";
+my $taskdir = $ENV{HOME} . "<%= scope.lookupvar('taskwarrior::params::t[\"basedir\"]') -%>";
 
 
 ############################################
