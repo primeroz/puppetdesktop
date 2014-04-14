@@ -28,6 +28,7 @@ class desktop::params {
                               'chromium-browser',
                               'cloudprint',
                               'flashplugin-installer',
+                              'pnmixer',
                               'thunar',
                               'thunar-archive-plugin',
                               'thunar-data',
@@ -35,6 +36,9 @@ class desktop::params {
                               'thunar-gtkhash',
                               'thunar-media-tags-plugin',
                               'thunar-volman',
+                              'xfce4-volumed',
+                              'xfce4-power-manager',
+                              'xscreensaver',
                             ]
 
       }
