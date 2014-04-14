@@ -30,4 +30,12 @@ class desktop (
       }
     }
 
+    class { "bash": 
+      user => "fc",
+    }
+
+    class { 'conky':
+      user => "fc",
+    }
+
 }
