@@ -3,7 +3,7 @@ class desktop::params {
     case $::osfamily {
       'Debian': {
         $common_packages = [ 'python-xdg',
-                             'slim',
+                              #'slim',
                              'unagi',
                              'wicd',
                              'wicd-cli',
