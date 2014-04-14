@@ -18,14 +18,15 @@ class bash (
       require => Package['bash'],
     }
 
-    file { "bashd_home_directory":
-      ensure => "directory",
-      path   => "/home/${user}/.bash.d/",
-      owner   => $user,
-      group   => $user,
-      mode    => '0750',
-      require => File['bashrc_user'],
-    }
+    #TODO This conflict with one below for "cannot alias file" ...
+    #file { "bashd_home_directory":
+    #  ensure => "directory",
+    #  path   => "/home/${user}/.bash.d/",
+    #  owner   => $user,
+    #  group   => $user,
+    #  mode    => '0750',
+    #  require => File['bashrc_user'],
+    #}
 
     file { "bashd_home_snippets":
       source => "puppet:///modules/bash/bash.d/",
@@ -34,7 +35,7 @@ class bash (
       owner   => $user,
       group   => $user,
       mode    => '0640',
-      require => File['bashd_home_directory'],
+      require => File['bashrc_user'],
     }
 
 
