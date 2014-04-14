@@ -6,5 +6,8 @@
 # Load all snippets from .bash.d
 
 if [ -d ~/.bash.d ]; then
-    find ~/.bash.d -type f | xargs -L1 -P1 source {}
+  for file in `find ~/.bash.d -type f`
+  do
+    source $file
+  done
 fi
