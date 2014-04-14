@@ -26,5 +26,26 @@ class conky (
      filetype => "source",
      source   => "conky/desktop/conkydate"
     }
+    conky::config { "desktop/conkymin":
+     user     => $user,
+     path     => "desktop",
+     filename => "conkymin",
+     filetype => "source",
+     source   => "conky/desktop/conkymin"
+    }
+    conky::config { "desktop/conkyhr":
+     user     => $user,
+     path     => "desktop",
+     filename => "conkyhr",
+     filetype => "source",
+     source   => "conky/desktop/conkyhr"
+    }
+    conky::config { "desktop/conkystats":
+     user     => $user,
+     path     => "desktop",
+     filename => "conkystats",
+     filetype => "source",
+     source   => "conky/desktop/conkystats"
+    }
 
 }

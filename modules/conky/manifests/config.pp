@@ -20,7 +20,7 @@ define conky::config (
 
     $home_real = "${home}/${user}"
 
-    if $path != undef {
+    if $path == undef {
       $configfile_real = "${home_real}/.config/conky/${filename}"
     }
     else {
