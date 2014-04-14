@@ -6,9 +6,8 @@ class taskwarrior (
 
 ) inherits taskwarrior::params {
 
-    package { "taskwarrior":
+    package { "${taskwarrior::params::packages}":
         ensure =>   'installed',
-        name   =>   $taskwarrior::params::packages,
     }
 
     if $user == undef {
