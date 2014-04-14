@@ -21,7 +21,7 @@ class desktop::params {
         $openbox_packages = [ 'obconf',
                               'obmenu',
                               'openbox',
-                              'openbox-themes',
+                              #'openbox-themes', - not available in Ubuntu
                             ]
 
         $desktop_packages = [ 'clipit',
