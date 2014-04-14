@@ -26,32 +26,32 @@ class desktop::common (
     $homedirs_real = f_desktop_homedirs_path($homedirs,"/home/${user}")
     create_resources(file,$homedirs_real,$homedirs_default)
 
-    # Slim Resources
-    file { "/etc/slim.conf":
-      ensure  => $ensure,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      content => template('desktop/slim.conf.erb'),
-      require => Package['slim'],
-      notify  => Service['slim'],
-    }
+    ## Slim Resources
+    #file { "/etc/slim.conf":
+    #  ensure  => $ensure,
+    #  owner   => 'root',
+    #  group   => 'root',
+    #  mode    => '0644',
+    #  content => template('desktop/slim.conf.erb'),
+    #  require => Package['slim'],
+    #  notify  => Service['slim'],
+    #}
 
-    file { "/usr/share/slim/themes/":
-      source  => "puppet:///modules/desktop/slim-themes/",
-      recurse => true,
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      require => Package['slim'],
-    }
+    #file { "/usr/share/slim/themes/":
+    #  source  => "puppet:///modules/desktop/slim-themes/",
+    #  recurse => true,
+    #  owner   => 'root',
+    #  group   => 'root',
+    #  mode    => '0644',
+    #  require => Package['slim'],
+    #}
 
-    service { 'slim':
-      ensure  => 'stopped',
-      enable  => 'false',
-      hasstatus  => 'false',
-      require => Package['slim'],
-    }
+    #service { 'slim':
+    #  ensure  => 'stopped',
+    #  enable  => 'false',
+    #  hasstatus  => 'false',
+    #  require => Package['slim'],
+    #}
 
     # Clipit Resources
     file { "/home/${user}/.config/clipit/clipitrc":
