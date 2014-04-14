@@ -11,7 +11,7 @@ class bash (
     #TODO Use Templates and Profiles better
     file { "bashrc_user":
       source => "puppet:///modules/bash/bashrc-default",
-      path   => "/home/${user}/.bash.d/",
+      path   => "/home/${user}/.bashrc",
       owner   => $user,
       group   => $user,
       mode    => '0640',
