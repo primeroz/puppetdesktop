@@ -23,7 +23,7 @@ class taskwarrior::params {
 
     case $::osfamily {
       'Debian': {
-        $packages = ['task']
+        $packages = ['task','libjson-perl']
         $taskwarrior_theme = "/usr/share/task/dark-gray-256.theme"
       }
     }

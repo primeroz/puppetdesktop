@@ -31,6 +31,7 @@ class taskwarrior (
         mode    => "0755",
         source  => "puppet:///modules/taskwarrior/bin/taskopen",
         require => Package["taskwarrior"],
+        before  => Utils::Rcfile["taskopenrc"],
     }
 
     # .taskopenrc configuration file
