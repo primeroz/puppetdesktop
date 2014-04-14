@@ -29,7 +29,7 @@ class taskwarrior (
         owner   => "root",
         group   => "root",
         mode    => "0755",
-        content => "taskwarrior/bin/t",
+        content => template("taskwarrior/bin/t"),
         require => Package["taskwarrior"],
     }
 
