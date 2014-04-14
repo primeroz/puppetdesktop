@@ -1,0 +1,3 @@
+# Local taskwarrior 
+alias tl='task rc:.taskrc '
+
