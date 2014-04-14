@@ -1,0 +1,10 @@
+#########################################
+#   This file is Controlled by Puppet   #
+#########################################
+
+
+# Load all snippets from .bash.d
+
+if [ -d ~/.bash.d ]; then
+    find ~/.bash.d -type f | xargs -L1 -P1 source {}
+fi
